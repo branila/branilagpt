@@ -56,7 +56,7 @@ nav {
 .question input {
   width: calc(100% - clamp(50px, 9vw, 90px) + 10px);
   height: 45px;
-  padding-left: 10px;
+  padding-inline: 10px;
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   border-radius: 5px;
   border: 0;
@@ -68,6 +68,7 @@ nav {
 .question input::placeholder {
   font-size: 20px;
   color: #000000;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
 }
 
 .question input:focus {

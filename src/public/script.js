@@ -12,14 +12,23 @@ async function handleRequest() {
     document.querySelector('input').value = ''
     smoothAnswerInsertion('Sto generando la tua risposta...')
 
-    let answer = await fetch('/api/request', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question })
-    })
+    try {
+      let answer = await fetch('/api/request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question })
+      })
 
-    answer = (await answer.json()).message.content
-    smoothAnswerInsertion(answer)
+      if (answer.error) {
+        throw new Error(answer.error)
+      }
+
+      answer = (await answer.json()).message.content
+      
+      smoothAnswerInsertion(answer)
+    } catch (error) {
+      smoothAnswerInsertion(`Qualcosa è andato storto, riprova più tardi!\n\n${error}`)
+    }
   }
 }
 

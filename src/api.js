@@ -7,9 +7,9 @@ const openai = new OpenAI()
 import Router from 'express'
 const router = Router()
 
-router.get('/request', async (req, res) => {
+router.post('/request', async (req, res) => {
   const completion = await openai.chat.completions.create({
-    messages: [{ role: 'user', content: 'You are a helpful assistant.' }],
+    messages: [{ role: 'user', content: req.body.question }],
     model: "gpt-3.5-turbo"
   })
 

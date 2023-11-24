@@ -1,0 +1,93 @@
+@import url('https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+  letter-spacing: 1px;
+}
+
+body {
+  min-height: 100svh;
+  background-color: #FFFFFF;
+}
+
+nav {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  background-color: #F1F1F1;
+  color: #000000;
+  font-weight: bold;
+}
+
+.chat-area {
+  padding: 0 clamp(5px, 10vw, 1200px);
+  color: #000000
+}
+
+.answer {
+  height: calc(100vh - 300px);
+  margin-block: 50px;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  line-height: 150%;
+  overflow: scroll;
+  background-color: #FFFFFF;
+  border: 0;
+  width: 100%;
+  color: #000000;
+  resize: none;
+}
+
+.answer:focus {
+  outline: none;
+}
+
+.question {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question input {
+  width: calc(100% - clamp(50px, 9vw, 90px) + 10px);
+  height: 45px;
+  padding-left: 10px;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  border-radius: 5px;
+  border: 0;
+  background-color: #f1f1f1;
+  color: #000000;
+  font-weight: bold;
+}
+
+.question input::placeholder {
+  font-size: 20px;
+  color: #000000;
+}
+
+.question input:focus {
+  outline: none;
+}
+
+.question button {
+  width: clamp(80px, 9vw, 90px);
+  height: 45px;
+  margin-left: 10px;
+  border: 0;
+  background-color: #dddddd;
+  color: #000000;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.question button:hover {
+  background-color: #c1c1c1;
+  color: #000000;
+  cursor: pointer;
+}

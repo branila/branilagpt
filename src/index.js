@@ -3,7 +3,6 @@ import apiRouter from './api.js'
 import homeRouter from './home.js'
 
 import Express from 'express'
-
 const app = Express()
 
 app.use(Express.static(dirname + '/public'))

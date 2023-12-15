@@ -1,13 +1,17 @@
 import dirname from './consts.js'
-import apiRouter from './api.js'
+import questionManager from './question.js'
 import homeRouter from './home.js'
 
+import { createServer } from 'http'
+import { Server } from 'socket.io'
 import Express from 'express'
+
 const app = Express()
+const server = createServer(app)
+const io = new Server(server)
 
-app.use(Express.json())
 app.use(Express.static(dirname + '/public'))
-app.use('/api', apiRouter)
 app.use('/', homeRouter)
+io.on('connection', socket => questionManager(socket))
 
-app.listen(3000)
+server.listen(3000)

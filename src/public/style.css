@@ -34,7 +34,7 @@ nav {
   margin-block: 50px;
   font-size: clamp(1.25rem, 2.5vw, 2rem);
   line-height: 150%;
-  overflow: scroll;
+  overflow-y: scroll;
   background-color: #FFFFFF;
   border: 0;
   width: 100%;

@@ -4,11 +4,15 @@ config()
 import OpenAI from 'openai'
 const openai = new OpenAI()
 
-const initialPrompt = `Rispondi alla seguente domanda esprimendoti come se fossi il fantasma di un cavaliere medioevale.`
+import prompts from './prompts.js'
 
 export default function questionManager(socket) {
-  socket.on('question', async question => {
-    console.log(`nuova domanda: ${question}`)
+  socket.on('question', async request => {
+    const question = request.question
+    const personality = request.personality
+
+    const initialPrompt = prompts[personality] || prompts['default']
+
     try {
       const stream = await openai.chat.completions.create({
         messages: [{ role: 'user', content: initialPrompt + question }],
@@ -17,7 +21,6 @@ export default function questionManager(socket) {
       })
   
       for await (const chunk of stream) {
-        console.log(chunk.choices[0]?.delta?.content)
         socket.emit('chunk', chunk.choices[0]?.delta?.content || "")
       }
     } catch (err) {

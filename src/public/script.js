@@ -11,12 +11,13 @@ inputAnswer(`Ciao, io sono BranilaGPT, un chatbot basato su un modello di intell
 
 async function handleRequest() {
   const question = questionInput.value
+  const personality = document.querySelector('select').value
 
   if (question) {
     questionInput.value = ''
     waitingResponse = true
 
-    socket.emit('question', question)
+    socket.emit('question', { question, personality })
     inputAnswer('Sto generando la tua risposta...')
   }
 }

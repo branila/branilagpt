@@ -54,7 +54,7 @@ nav {
 }
 
 .question input {
-  width: calc(100% - clamp(50px, 9vw, 90px) + 10px);
+  width: calc(100% - 140px - clamp(80px, 9vw, 90px));
   height: 45px;
   padding-inline: 10px;
   font-size: clamp(1rem, 1.5vw, 1.2rem);
@@ -91,4 +91,20 @@ nav {
   background-color: #c1c1c1;
   color: #000000;
   cursor: pointer;
+}
+
+.question select {
+  height: 45px;
+  width: 120px;
+  margin-right: 10px;
+}
+
+.question select {
+  border: 0;
+  background-color: #dddddd;
+  color: #000000;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: bold;
+  border-radius: 5px;
+  padding-left: 10px;
 }

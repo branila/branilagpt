@@ -1,4 +1,4 @@
-import dirname from './consts.js'
+import { dirname } from './consts.js'
 
 import Router from 'express'
 const router = Router()

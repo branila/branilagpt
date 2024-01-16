@@ -1,15 +1,15 @@
-import { config } from 'dotenv'
-config()
-
 import OpenAI from 'openai'
 const openai = new OpenAI()
 
 import prompts from './prompts.js'
+import notifyQuestion from './notify.js'
 
 export default function questionManager(socket) {
   socket.on('question', async request => {
     const question = request.question
     const personality = request.personality
+
+    notifyQuestion(question, personality)
 
     const initialPrompt = prompts[personality] || prompts['default']
 

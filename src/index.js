@@ -1,4 +1,4 @@
-import dirname from './consts.js'
+import { dirname } from './consts.js'
 import questionManager from './question.js'
 import homeRouter from './home.js'
 

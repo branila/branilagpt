@@ -6,6 +6,7 @@
   box-sizing: border-box; 
   font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
   letter-spacing: 1px;
+  filter: invert();
 }
 
 body {
@@ -30,15 +31,15 @@ nav {
 }
 
 .answer {
-  height: calc(100vh - 300px);
+  height: calc(100svh - 300px);
   margin-block: 50px;
   font-size: clamp(1.25rem, 2.5vw, 2rem);
   line-height: 150%;
   overflow-y: scroll;
-  background-color: #FFFFFF;
+  background-color: #000000;
   border: 0;
   width: 100%;
-  color: #000000;
+  color: #FFFFFF;
   resize: none;
 }
 
@@ -107,4 +108,32 @@ nav {
   font-weight: bold;
   border-radius: 5px;
   padding-left: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+  .question {
+    display: grid;
+    grid-template-columns: repeat(2, calc(50vw - 40px));
+    margin-bottom: 40px;
+  }
+
+  .question input {
+    order: 0;
+    grid-column: span 2;
+    width: 100%;
+  }
+
+  .question select {
+    order: 1;
+    width: 100%;
+  }
+
+  .question button {
+    order: 2;
+    width: calc(100% - 10px);
+  }
+
+  .answer {
+    height: calc(100svh - 325px);
+  }
 }

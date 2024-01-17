@@ -7,7 +7,7 @@ let charsQueue = ''
 let waitingResponse = false
 let insertedLetters = 0
 
-inputAnswer(`Ciao, io sono BranilaGPT, un chatbot basato su un modello di intelligenza artificiale creato da Branila Claudiu Stefan, uno studente dell'ITIS Paleocapa. Chiedimi qualsiasi cosa, e io cercherò di risponderti nel modo migliore possibile!`)
+inputAnswer(`Ciao, io sono BranilaGPT, un chatbot basato su un modello di intelligenza artificiale creato da Branila Claudiu Stefan, uno studente dell'ITIS Paleocapa.\n\nChiedimi qualsiasi cosa ed io ti risponderò nel modo migliore possibile, a seconda della personalità scelta.`)
 
 async function handleRequest() {
   const question = questionInput.value

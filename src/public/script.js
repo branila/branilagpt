@@ -13,7 +13,7 @@ async function handleRequest() {
   const question = questionInput.value
   const personality = document.querySelector('select').value
 
-  if (question) {
+  if (question && !waitingResponse) {
     questionInput.value = ''
     waitingResponse = true
 

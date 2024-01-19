@@ -6,7 +6,7 @@ const answerElement = document.querySelector('.answer')
 
 let charsQueue = ''
 let waitingResponse = false
-let answerFinished = true
+let isResponding = false
 let insertedLetters = 0
 
 inputAnswer(`Ciao, io sono BranilaGPT, un chatbot basato su un modello di intelligenza artificiale creato da Branila Claudiu Stefan, uno studente dell'ITIS Paleocapa.\n\nChiedimi qualsiasi cosa ed io ti risponderò nel modo migliore possibile, a seconda della personalità scelta.`)
@@ -14,6 +14,8 @@ inputAnswer(`Ciao, io sono BranilaGPT, un chatbot basato su un modello di intell
 setInterval(() => {
   if (insertedLetters !== charsQueue.length) {
     answerElement.value += charsQueue[insertedLetters++]
+  } else if (isResponding){
+    isResponding = false
   }
 }, 20)
 
@@ -21,9 +23,10 @@ async function handleRequest() {
   const question = questionInput.value
   const personality = document.querySelector('select').value
 
-  if (question && answerFinished && !waitingResponse) {
+  if (question.trim().length > 3 && !isResponding) {
     questionInput.value = ''
     waitingResponse = true
+    isResponding = true
 
     socket.emit('question', { question, personality })
     inputAnswer('Sto generando la tua risposta...')
@@ -39,14 +42,13 @@ function inputAnswer(answer) {
 socket.on('chunk', chunk => {
   if (waitingResponse) {
     waitingResponse = false
-    answerFinished = false
+    isResponding = true
     inputAnswer('')
   }
   
   charsQueue += chunk
 })
 
-socket.on('end', () => answerFinished = true)
 socket.on('error', error => inputAnswer(error))
 
 submitButton.addEventListener('click', handleRequest)

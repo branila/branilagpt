@@ -6,6 +6,8 @@ import notifyQuestion from './notify.js'
 
 export default function questionManager(socket) {
   socket.on('question', async request => {
+    let response = ''
+
     const question = request.question
     const personality = request.personality
 
@@ -21,8 +23,11 @@ export default function questionManager(socket) {
       })
   
       for await (const chunk of stream) {
-        socket.emit('chunk', chunk.choices[0]?.delta?.content || "")
+        socket.emit('chunk', chunk.choices[0]?.delta?.content || '')
+        response += chunk.choices[0]?.delta?.content || ''
       }
+
+      socket.emit('end')
     } catch (err) {
       console.error(err)
       socket.emit('error', err)

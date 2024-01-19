@@ -23,6 +23,8 @@ export default function questionManager(socket) {
       for await (const chunk of stream) {
         socket.emit('chunk', chunk.choices[0]?.delta?.content || "")
       }
+
+      socket.emit('end')
     } catch (err) {
       console.error(err)
       socket.emit('error', err)
